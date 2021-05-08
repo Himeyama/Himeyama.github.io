@@ -1,0 +1,28 @@
+---
+layout: default
+title: アーカイブ
+description: "村田 光春 投稿アーカイブ"
+redirect_from:
+  - /list/
+---
+
+<div class="posts-container mx-auto px-3 py-5">
+    {%- assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+    {%- for year in postsByYear %}
+    <h3 id="year-name-{{ year.name }}">
+        <script>
+            let era = new Era("{{  year.name }}")
+            document.getElementById("year-name-{{ year.name }}").innerText = `${era.getEra()} ${era.getEraDate()[1]} 年`
+        </script>
+    </h3>
+    <ul class="list mb-5">
+        {% for post in year.items -%}
+        <li>
+            <span class="archive-date">{{ post.date | date: '%b %d, %Y' }}</span>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+        {%- endfor %}
+    </ul>
+    {%- endfor %}
+</div>
+<script src="/assets/js/archive.js"></script>

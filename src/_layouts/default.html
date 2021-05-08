@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+
+    <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}"
+        crossorigin="anonymous">
+
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/ads.css" rel="stylesheet">
+    <link href="/assets/css/footer.css" rel="stylesheet">
+    <link href="/assets/css/navbar.css" rel="stylesheet">
+    <link href="/assets/css/pygments-manni.css" rel="stylesheet">
+    <link href="/assets/css/subnav.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/variables.css" rel="stylesheet">
+    <link href="/assets/css/buttons.css" rel="stylesheet">
+
+    <script src="/assets/js/era.js"></script>
+
+    <script>
+        console.log("%cストップ!", "font-size: 6em; font-weight: bold; color: #3F51B5;")
+        console.log('%cもし誰かにここにコピペしろと言われたなら...', 'color: #212121; font-size: 1.4em;')
+        console.log('%cここに何かを貼り付けたら...', 'font-weight: bold; color: #f44336; font-size: 1.6em;')
+    </script>
+
+    {% include favicons.html %}
+
+    {% feed_meta %}
+
+    {% seo %}
+
+    {% include analytics.html %}
+    {% include no-js.html %}
+</head>
+
+<body>
+    {% include navbar.html %}
+    {% include hero.html %}
+    {% include subnav.html %}
+
+    <div class="container">
+        {{ content }}
+    </div>
+
+    {% include footer.html %}
+
+    {% include lazyload.html %}
+</body>
+
+</html>
