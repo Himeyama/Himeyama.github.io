@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://gmpg.org/xfn/11" rel="profile">
 
-    <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}"
-        crossorigin="anonymous">
+    <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/loader.min.js"></script>
 
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/ads.css" rel="stylesheet">
@@ -18,6 +19,14 @@
     <link href="/assets/css/theme.css" rel="stylesheet">
     <link href="/assets/css/variables.css" rel="stylesheet">
     <link href="/assets/css/buttons.css" rel="stylesheet">
+
+    <style>
+        #monaco-container {
+            overflow: hidden;
+            height: 50px;
+            width: 100%;
+        }
+    </style>
 
     <script src="/assets/js/era.js"></script>
 
@@ -49,6 +58,8 @@
     {% include footer.html %}
 
     {% include lazyload.html %}
+
+    <script src="/assets/js/code-monaco.js"></script>
 </body>
 
 </html>
