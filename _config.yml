@@ -16,9 +16,9 @@ defaults:
       path:     ""
     values:
       image:
-        path:   "/assets/img/bootstrap-social.png" # default image
-        width:  1000
-        height: 500
+        path:   "/assets/img/social.png" # default image
+        width:  480
+        height: 720
 
 # Gems
 plugins:
