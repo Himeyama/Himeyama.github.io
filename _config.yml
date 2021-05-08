@@ -1,9 +1,6 @@
 # Setup
 title:          "村田 光春"
-baseurl: "http://himeyama.github.io"
-url: "https://himeyama.github.io"
 paginate:       5
-source:         src
 sass:
   style:        compressed
 host:           localhost # same as default value '127.0.0.1' but reads better
@@ -33,5 +30,3 @@ plugins:
 
 redirect_from:
   json: false
-
-theme: jekyll-theme-minimal

@@ -1,0 +1,39 @@
+I"�
+<p>DLL の作成と C のコンパイルのメモ</p>
+<h2 id="ライブラリー">ライブラリー</h2>
+<h3 id="ソースファイル">ソースファイル</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// gcd.c</span>
+<span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+    <span class="k">return</span> <span class="o">!</span><span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ヘッダーファイル">ヘッダーファイル</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// gcd.h</span>
+<span class="cp">#ifndef TEST_H
+#define TEST_H
+</span>
+<span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<h3 id="プログラム">プログラム</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include "gcd.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">gcd</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="コンパイル">コンパイル</h2>
+
+<h3 id="dll-の作成">DLL の作成</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc gcd.c <span class="nt">-shared</span> <span class="nt">-o</span> gcd.dll
+</code></pre></div></div>
+
+<h3 id="コンパイル-1">コンパイル</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc main.c <span class="nt">-lgcd</span> <span class="nt">-L</span><span class="nb">.</span>
+</code></pre></div></div>
+:ET

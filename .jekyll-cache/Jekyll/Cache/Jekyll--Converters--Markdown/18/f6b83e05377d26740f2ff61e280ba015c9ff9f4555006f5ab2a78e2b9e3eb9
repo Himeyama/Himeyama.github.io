@@ -1,0 +1,42 @@
+I"�<p>例として3を返すプログラムを作る。</p>
+
+<p>まず、C でソースコードを書く。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// three.c</span>
+<span class="cp">#include &lt;ruby.h&gt;
+</span>
+<span class="k">static</span> <span class="n">VALUE</span> <span class="nf">int_three</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">INT2NUM</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">Init_three</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">rb_define_singleton_method</span><span class="p">(</span><span class="n">rb_cInteger</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="n">int_three</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Makefile を作成するための
+スクリプトを作成。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp"># extconf.rb
+</span><span class="n">require</span> <span class="err">'</span><span class="n">mkmf</span><span class="err">'</span>
+<span class="n">create_makefile</span> <span class="s">"three"</span>
+</code></pre></div></div>
+
+<p>Make</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make
+</code></pre></div></div>
+
+<p>作成したプログラムを呼び出す Ruby スクリプトを書く。</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># main.rb</span>
+<span class="nb">require</span> <span class="s2">"./three"</span>
+<span class="nb">p</span> <span class="no">Integer</span><span class="p">.</span><span class="nf">three</span>
+</code></pre></div></div>
+
+<p>実行</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby main.rb
+3
+</code></pre></div></div>
+:ET
