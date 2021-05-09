@@ -22,11 +22,17 @@ layout: default
                 <h4>
                     <a href="{{ post.url }}">
                         {{ post.title }}
-                        <small>{{ post.date | date_to_string }}</small>
+                        <small>{{ post.date | date_to_rfc822 }}</small>
                     </a>
                 </h4>
             </li>
             {%- endfor %}
+            <script>
+                let sm = document.getElementsByClassName("related-posts")[0].getElementsByTagName("small")
+                for(let s of sm){
+                    s.innerText = (new Era(s.innerHTML)).getWareki()
+                }
+            </script>
         </ul>
     </div>
     <script>

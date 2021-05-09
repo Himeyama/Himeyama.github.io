@@ -9,9 +9,6 @@ for(let code of codes){
     if(code.tagName == "PRE"){
         let text = code.innerText
         let lang = code.parentElement.parentElement.classList[0].split("-")[1]
-        console.log(text)
-        console.log(lang)
-        console.log(code)
         lang = lang == "rb" ? "ruby" : lang
         lang = lang == "sh" ? "shell" : lang
         require(
