@@ -3,10 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}" crossorigin="anonymous">
+
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link href="{{ site.assets.css.uri }}" rel="preload" as="style">
     <link href="/assets/css/codicon.css" rel="preload" as="font">
+    <link href="/assets/css/style.css" rel="preload" as="style">
+    <link href="/assets/css/ads.css" rel="preload" as="style">
+    <link href="/assets/css/footer.css" rel="preload" as="style">
+    <link href="/assets/css/navbar.css" rel="preload" as="style">
+    <link href="/assets/css/pygments-manni.css" rel="preload" as="style">
+    <link href="/assets/css/subnav.css" rel="preload" as="style">
+    <link href="/assets/css/theme.css" rel="preload" as="style">
+    <link href="/assets/css/variables.css" rel="preload" as="style">
+    <link href="/assets/css/buttons.css" rel="preload" as="style">
+    <link href="/assets/js/era.js" rel="preload" as="script">
 
     {% if page.terminal %}
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
@@ -14,6 +25,7 @@
         <script src="https://unpkg.com/xterm@4.9.0/lib/xterm.js"></script>    
     {% endif %}
 
+    <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}" crossorigin="anonymous" >
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/ads.css" rel="stylesheet">
     <link href="/assets/css/footer.css" rel="stylesheet">
@@ -23,22 +35,7 @@
     <link href="/assets/css/theme.css" rel="stylesheet">
     <link href="/assets/css/variables.css" rel="stylesheet">
     <link href="/assets/css/buttons.css" rel="stylesheet"> 
-
-    <style>
-        #monaco-container {
-            overflow: hidden;
-            height: 50px;
-            width: 100%;
-        }
-    </style>
-
     <script src="/assets/js/era.js"></script>
-
-    <script>
-        console.log("%cストップ!", "font-size: 6em; font-weight: bold; color: #3F51B5;")
-        console.log('%cもし誰かにここにコピペしろと言われたなら...', 'color: #212121; font-size: 1.4em;')
-        console.log('%cここに何かを貼り付けたら...', 'font-weight: bold; color: #f44336; font-size: 1.6em;')
-    </script>
 
     {% include favicons.html %}
 
