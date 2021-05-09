@@ -27,25 +27,50 @@ terminal: true
             term.writeln('Copyright (c) Murata Mitsuharu.');
             prompt(term);
 
+            let input = ""
+            let stdout, status = true
             term.onData(e => {
-                console.log(e)
+                // console.log(e)
+                
                 switch (e) {
                     case '\r': // Enter
+                        [stdout, status] = command(input, status)
+                        term.write(stdout)
                         prompt(term);
+                        input = ""
                         break
                     case '\u0003': // Ctrl+C
                         prompt(term);
+                        input = ""
                         break;
                     case '\u007F': // Backspace (DEL)
                         // Do not delete the prompt
                         if (term._core.buffer.x > 2) {
                             term.write('\b \b');
+                            input = input.slice(0, -1)
                         }
                         break;
                     default: // Print all other characters for demo
+                        input += e
                         term.write(e);
                 }
             });
+        }
+
+        function command(str, status){
+            str = str.replace("$?", status ? "0": "1")
+            if(str == "") return ["", true]
+
+            if(str == "clear"){
+                term.write('\x1b[H\x1b[2J')
+                return ["", true]
+            }
+            let echo = str.match(/^echo\s(.*?)$/)
+            if(echo){
+                return ["\r\n"+echo[1], true]
+            }
+            
+            return [`\r\n${str}: command not found`, false]
         }
 
         function prompt(term) {
