@@ -15,6 +15,8 @@ sudo apt update -y && sudo apt install python3-pip -y
 ```
 
 ## youtube-dl のインストール
+`apt` 経由でインストールすると、何故かうまくいかなかったりしたので `pip3` でインストールする。
+
 ```bash
 pip3 install youtube-dl
 ```
