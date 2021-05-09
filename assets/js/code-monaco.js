@@ -4,18 +4,18 @@ require.config(
     }
 )
 
-let codes = document.getElementsByClassName("highlight")
-for(let code of codes){
-    if(code.tagName == "PRE"){
-        let text = code.innerText
-        let lang = code.parentElement.parentElement.classList[0].split("-")[1]
-        lang = lang == "rb" ? "ruby" : lang
-        lang = lang == "sh" ? "shell" : lang
-        require(
-            ["vs/editor/editor.main"],
-            () => {
+require(
+    ["vs/editor/editor.main"],
+    () => {
+        let codes = document.getElementsByClassName("highlight")
+        for(let code of codes){
+            if(code.tagName == "PRE"){
+                let text = code.innerText
+                let lang = code.parentElement.parentElement.classList[0].split("-")[1]
+                lang = lang == "rb" ? "ruby" : lang
+                lang = lang == "sh" ? "shell" : lang
                 const container = code.parentElement.parentElement;
-                code.parentElement.remove()
+                code.remove()
                 let editor = monaco.editor.create(
                     container,
                     { 
@@ -37,6 +37,6 @@ for(let code of codes){
                     el.style.height = `${editor.getModel().getLineCount() * 19}px`
                 })
             }
-        );
+        }        
     }
-}
+);
