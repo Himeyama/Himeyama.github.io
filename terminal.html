@@ -1,0 +1,56 @@
+---
+layout: post
+title: Terminal (開発中)
+date: 2021-05-09
+terminal: true
+---
+
+<div id="terminal"></div>
+<script>
+    $(function () {
+        // HACK: This should be window.Terminal once upgraded to 4.0.1
+        term = new Terminal();
+        term.open(document.getElementById('terminal'));
+
+        function runFakeTerminal() {
+            if (term._initialized) {
+                return;
+            }
+
+            term._initialized = true;
+
+            term.prompt = () => {
+                term.write('\r\n$ ');
+            };
+
+            term.writeln('\x1B[1;31mMurata\'s Official Web Site\x1B[0m');
+            term.writeln('Copyright (c) Murata Mitsuharu.');
+            prompt(term);
+
+            term.onData(e => {
+                console.log(e)
+                switch (e) {
+                    case '\r': // Enter
+                        prompt(term);
+                        break
+                    case '\u0003': // Ctrl+C
+                        prompt(term);
+                        break;
+                    case '\u007F': // Backspace (DEL)
+                        // Do not delete the prompt
+                        if (term._core.buffer.x > 2) {
+                            term.write('\b \b');
+                        }
+                        break;
+                    default: // Print all other characters for demo
+                        term.write(e);
+                }
+            });
+        }
+
+        function prompt(term) {
+            term.write('\r\n\x1B[1;32mhimeyama@github.io\x1B[0m:\x1B[1;34m/\x1B[0m$ ');
+        }
+        runFakeTerminal();
+    });
+</script>

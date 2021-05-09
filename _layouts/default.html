@@ -7,6 +7,12 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
 
     <link href="{{ site.assets.css.uri }}" rel="stylesheet" integrity="{{ site.assets.css.sri }}" crossorigin="anonymous">
+    
+    {% if page.terminal %}
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/xterm@4.9.0/css/xterm.css">
+    <script src="https://unpkg.com/xterm@4.9.0/lib/xterm.js"></script>    
+    {% endif %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/loader.min.js"></script>
 
@@ -19,6 +25,8 @@
     <link href="/assets/css/theme.css" rel="stylesheet">
     <link href="/assets/css/variables.css" rel="stylesheet">
     <link href="/assets/css/buttons.css" rel="stylesheet">
+    
+    
 
     <style>
         #monaco-container {
