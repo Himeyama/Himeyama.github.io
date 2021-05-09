@@ -1,0 +1,7 @@
+.netlify/
+.sass-cache/
+/_site/
+.DS_Store
+.ruby-version
+.github/
+.jekyll-cache/

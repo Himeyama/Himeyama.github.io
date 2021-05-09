@@ -1,0 +1,12 @@
+<nav class="bd-subnavbar pt-2 pb-3 pb-md-2">
+    <div class="container d-flex align-items-md-center py-2">
+        <nav class="nav">
+            <a class="text-dark py-1 mr-3{% if page.url == '/' %} fw-600 text-decoration-none{% endif %}"
+                href="/">投稿</a>
+            <a class="text-dark py-1 mr-3{% if page.url == '/archive.html' %} fw-600 text-decoration-none{% endif %}"
+                href="{% link archive.html %}">アーカイブ</a>
+            <a class="text-dark py-1 mr-3{% if page.url == '/terminal.html' %} fw-600 text-decoration-none{% endif %}"
+                href="{% link terminal.html %}">ターミナル</a>
+        </nav>
+    </div>
+</nav>

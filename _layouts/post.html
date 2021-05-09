@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="posts-container px-3 mx-auto my-5">
+    <div class="post">
+        <h1 class="post-title fw-500">{{ page.title }}</h1>
+        {% include author-info.html -%}
+
+        {%- if page.video -%}
+        {%- include video.html -%}
+        {%- endif -%}
+
+        {{ content }}
+    </div>
+
+    <div class="related" id="related-container">
+        <h2>最近の投稿</h2>
+        <ul class="related-posts list-unstyled">
+            {% for post in site.related_posts limit:3 -%}
+            <li>
+                <h4>
+                    <a href="{{ post.url }}">
+                        {{ post.title }}
+                        <small>{{ post.date | date_to_rfc822 }}</small>
+                    </a>
+                </h4>
+            </li>
+            {%- endfor %}
+            <script>
+                let sm = document.getElementsByClassName("related-posts")[0].getElementsByTagName("small")
+                for(let s of sm){
+                    s.innerText = (new Era(s.innerHTML)).getWareki()
+                }
+            </script>
+        </ul>
+    </div>
+    <script>
+        if({{ site.related_posts | size }} <= 0){
+            document.getElementById("related-container").remove()
+        }
+    </script>
+</div>
+<script src="/assets/js/post.js"></script>
