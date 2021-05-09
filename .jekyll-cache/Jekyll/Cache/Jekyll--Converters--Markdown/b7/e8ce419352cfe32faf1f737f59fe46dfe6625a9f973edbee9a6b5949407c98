@@ -1,0 +1,19 @@
+I"u<ol>
+  <li>
+    <p>アイコンを作成します。</p>
+
+    <p><img src="/assets/img/make_favicon/1.webp" alt="icon の作り方" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">16</code>、<code class="language-plaintext highlighter-rouge">24</code>、<code class="language-plaintext highlighter-rouge">32</code>、<code class="language-plaintext highlighter-rouge">48</code>、<code class="language-plaintext highlighter-rouge">64</code>、<code class="language-plaintext highlighter-rouge">128</code>、<code class="language-plaintext highlighter-rouge">256</code> の7種類の大きさの PNG 画像を用意します。
+ <img src="/assets/img/make_favicon/2.webp" alt="icon の作り方" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">convert</code> アイコンでアイコンを作成します。
+ <img src="/assets/img/make_favicon/3.webp" alt="icon の作り方" /></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> convert <span class="k">*</span>.png favicon.ico
+</code></pre></div>    </div>
+  </li>
+</ol>
+:ET
