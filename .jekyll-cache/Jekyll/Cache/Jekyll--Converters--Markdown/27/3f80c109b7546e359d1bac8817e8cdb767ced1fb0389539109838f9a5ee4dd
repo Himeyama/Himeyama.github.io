@@ -1,9 +1,0 @@
-I"�<p>DLL の作成と C のコンパイルのメモ</p>
-<h2 id="ライブラリー">ライブラリー</h2>
-<h3 id="ソースファイル">ソースファイル</h3>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// gcd.c</span>
-<span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
-    <span class="k">return</span> <span class="o">!</span><span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-:ET
