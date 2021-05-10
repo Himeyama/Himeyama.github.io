@@ -31,20 +31,20 @@ layout: default
 
     <div class="pagination">
         {% if paginator.next_page -%}
-        <a class="pagination-item older" href="/page{{ paginator.next_page }}/"><i class="codicon codicon-arrow-left" style="font-size: 2em;"></i></a>
+        <a class="pagination-item older" href="/page{{ paginator.next_page }}/">前のページ</a>
         {%- else -%}
-        <span class="pagination-item older"><i class="codicon codicon-arrow-left" style="font-size: 2em;"></i></span>
+        <span class="pagination-item older">前のページ</span>
         {%- endif %}
         {% if paginator.previous_page -%}
         {%- if paginator.page == 2 -%}
-        <a class="pagination-item newer" href="/"><i class="codicon codicon-arrow-right" style="font-size: 2em;"></i></a>
+        <a class="pagination-item newer" href="/">次のページ</a>
         {%- else -%}
-        <a class="pagination-item newer" href="/page{{ paginator.previous_page }}/"><i class="codicon codicon-arrow-right" style="font-size: 2em;"></i></a>
+        <a class="pagination-item newer" href="/page{{ paginator.previous_page }}/">次のページ</a>
         {%- endif -%}
         {%- else -%}
-        <span class="pagination-item newer"><i class="codicon codicon-arrow-right" style="font-size: 2em;"></i></span>
+        <span class="pagination-item newer">次のページ</span>
         {%- endif %}
     </div>
 </div>
-<link href="/assets/css/codicon.css" rel="stylesheet">
+<!-- <link href="/assets/css/codicon.css" rel="stylesheet"> -->
 <script src="/assets/js/post.js"></script>
