@@ -30,6 +30,10 @@ function sdate2str(str){
     return date2str(new Date(str))
 }
 
+function sdate2w(str){
+    return (new Era(str)).getWareki()
+}
+
 let reqsc2 = new XMLHttpRequest
 reqsc2.responseType = "arraybuffer"
 reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz")
@@ -40,7 +44,7 @@ reqsc2.addEventListener("load", (e) => {
     let table = document.getElementById("table")
     let html = "<tr><th>No</th><th>市町村町名</th><th>陽性確定日</th><th>性別</th><th>年代</th><th>公表日</th><th>備考</th></tr>"
     for(let d of data.slice().reverse()){
-        html += `<tr><td>${d["No"]}</td><td>${d["市町村町名"]}</td><td>${sdate2str(d["陽性確定日"])}</td><td>${d["患者_性別"]}</td><td>${d["患者_年代"]}</td><td>${sdate2str(d["公表日"])}</td><td>${d["備考"] ? d["備考"] : ""}</td></tr>`    
+        html += `<tr><td>${d["No"]}</td><td>${d["市町村町名"]}</td><td>${sdate2w(d["陽性確定日"])}</td><td>${d["患者_性別"]}</td><td>${d["患者_年代"]}</td><td>${sdate2w(d["公表日"])}</td><td>${d["備考"] ? d["備考"] : ""}</td></tr>`    
     }
     table.innerHTML += html
 
@@ -71,12 +75,12 @@ reqsc2.addEventListener("load", (e) => {
     let config = {
         type: "line",
         data: {
-            labels: dt,
+            labels: dt.slice(dt.length-30, dt.length),
             datasets: [{
-                label: "陽性者数",
+                label: "陽性者数(1ヶ月)",
                 fill: false,
                 borderColor: "#f44336",
-                data: x
+                data: x.slice(x.length-30, x.length)
             }],
         },
         options: {
