@@ -5,6 +5,9 @@ title: 山口県の新型コロナウイルス情報
 description: 山口県の新型コロナウイルス情報
 ---
 
+<div class="card mb-3">
+    <div class="card-body mx-auto" id="map"></div>
+</div>
 
 <div class="card mb-3">
     <canvas class="card-body" id="myChart"></canvas>
@@ -22,6 +25,49 @@ description: 山口県の新型コロナウイルス情報
 <script src="/assets/js/gunzip.min.js"></script>
 <script>
 
+let map = document.getElementById("map")
+let svg = new XMLHttpRequest
+svg.open("GET", "/assets/img/yamaguchi.svg")
+svg.send()
+svg.addEventListener("load", (e) => {
+    map.innerHTML = e.target.response
+    // let citys = [
+    //     document.getElementById("山口市"),
+    //     document.getElementById("防府市"),
+    //     document.getElementById("美祢市"),
+    //     document.getElementById("下松市"),
+    //     document.getElementById("光市"),
+    //     document.getElementById("田布施町"),
+    //     document.getElementById("平生町"),
+    //     document.getElementById("下関市"),
+    //     document.getElementById("宇部市"),
+    //     document.getElementById("長門市"),
+    //     document.getElementById("山陽小野田市"),
+    //     document.getElementById("周南市"),
+    //     document.getElementById("萩市"),
+    //     document.getElementById("柳井市"),
+    //     document.getElementById("岩国市"),
+    //     document.getElementById("阿武町"),
+    //     document.getElementById("和木町"),
+    //     document.getElementById("周防大島町"),
+    //     document.getElementById("上関町"),
+    // ]
+    // c = city
+    // let h = 0
+    // window.setInterval(()=>{
+    //     let i = 0
+    //     for(let city of citys){
+    //         city.style.fill = `hsl(calc(${(h + i * 20) % 360}), 100%, 50%)`
+    //         i++
+    //     }
+    //     h++;
+    // }, 5)
+
+
+    // 
+})
+
+// 日付を文字列に
 function date2str(date){
     return `${date.getFullYear()}/${(date.getMonth() + 1)}/${date.getDate()}`
 }
@@ -34,22 +80,8 @@ function sdate2w(str){
     return (new Era(str)).getWareki()
 }
 
-let reqsc2 = new XMLHttpRequest
-reqsc2.responseType = "arraybuffer"
-reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz")
-reqsc2.send()
-reqsc2.addEventListener("load", (e) => {
-    data = JSON.parse(new TextDecoder().decode(new Zlib.Gunzip(new Uint8Array(e.target.response)).decompress()))
-
-    let table = document.getElementById("table")
-    let html = "<tr><th>No</th><th>市町村町名</th><th>陽性確定日</th><th>性別</th><th>年代</th><th>公表日</th><th>備考</th></tr>"
-    for(let d of data.slice().reverse()){
-        html += `<tr><td>${d["No"]}</td><td>${d["市町村町名"]}</td><td>${sdate2w(d["陽性確定日"])}</td><td>${d["患者_性別"]}</td><td>${d["患者_年代"]}</td><td>${sdate2w(d["公表日"])}</td><td>${d["備考"] ? d["備考"] : ""}</td></tr>`    
-    }
-    table.innerHTML += html
-
-    const first = new Date(data[0]["陽性確定日"])
-    const last = new Date(data[data.length-1]["陽性確定日"])
+function func(data, first, last){
+    first = new Date(first)
     let t = []
     let dt = []
     for(let date = first; date <= last; date.setDate(date.getDate() + 1)){
@@ -68,6 +100,41 @@ reqsc2.addEventListener("load", (e) => {
         if(!a) x[i] = 0
         else x[i] = a
         i++
+    }
+    return [x, dt]
+}
+
+let reqsc2 = new XMLHttpRequest
+reqsc2.responseType = "arraybuffer"
+reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz")
+reqsc2.send()
+reqsc2.addEventListener("load", (e) => {
+    data = JSON.parse(new TextDecoder().decode(new Zlib.Gunzip(new Uint8Array(e.target.response)).decompress()))
+
+    let table = document.getElementById("table")
+    let html = "<tr><th>No</th><th>市町村名</th><th>陽性確定日</th><th>性別</th><th>年代</th><th>公表日</th><th>備考</th></tr>"
+    for(let d of data.slice().reverse()){
+        html += `<tr><td>${d["No"]}</td><td>${d["市町村名"]}</td><td>${sdate2w(d["陽性確定日"])}</td><td>${d["患者_性別"]}</td><td>${d["患者_年代"]}</td><td>${sdate2w(d["公表日"])}</td><td>${d["備考"] ? d["備考"] : ""}</td></tr>`    
+    }
+    table.innerHTML += html
+
+    // let f, l
+    f = new Date(data[0]["陽性確定日"])
+    l = new Date(data[data.length-1]["陽性確定日"])
+    // console.log(l)
+    let x, dt
+    [x, dt] = func(data, f, l)
+    // console.log(x, dt)
+
+    // 市町村ごとに
+    sgov = {}
+    for(let d of data){
+        if(!sgov[d["市町村名"]]) sgov[d["市町村名"]] = []
+        sgov[d["市町村名"]] = sgov[d["市町村名"]].concat(d)
+    }
+    sgov2 = {}
+    for(let s of Object.entries(sgov)){
+        sgov2[s[0]] = func(s[1], f, l)[0]
     }
 
     let ctx = document.getElementById('myChart').getContext('2d')
