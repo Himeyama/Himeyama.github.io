@@ -139,16 +139,36 @@ reqsc2.addEventListener("load", (e) => {
 
     let ctx = document.getElementById('myChart').getContext('2d')
 
-    let config = {
-        type: "line",
-        data: {
-            labels: dt.slice(dt.length-30, dt.length),
-            datasets: [{
-                label: "陽性者数(1ヶ月)",
+    let gcolors = ["#2196F3", "#FF9800", "#4CAF50", "#F44336", "#673AB7", "#795548"]
+    let cgov = ["下関市", "山口市", "宇部市", "周南市", "岩国市", "防府市"]
+    
+    let datasets = [{
+        label: "陽性者数(1ヶ月)",
+        fill: false,
+        borderColor: "#f44336",
+        data: x.slice(-30)
+    }]
+
+    for(let [i, c] of cgov.entries()){
+        datasets = datasets.concat(
+            {
+                label: c,
                 fill: false,
-                borderColor: "#f44336",
-                data: x.slice(x.length-30, x.length)
-            }],
+                borderColor: gcolors[i],
+                data: sgov2[c].slice(-30),
+                type: "line"
+            }
+        )
+    }
+    
+
+
+
+    let config = {
+        type: "bar",
+        data: {
+            labels: dt.slice(-30),
+            datasets: datasets,
         },
         options: {
             scales: {
