@@ -23,9 +23,23 @@ author: himeyama
 - ![漢字検定]({{ "/assets/img/kanken.svg" | relative_url }}){: .icon} 漢検 準2級
 
 ## 趣味
-- プログラミング ![Ruby]({{ "/assets/img/ruby_32_8bit.png" | relative_url }}){: .icon}
-![Python]({{ "/assets/img/python-powered-w.svg" | relative_url }}){: .icon}
-![Unity]({{ "/assets/img/Unity_Technologies_logo.svg" | relative_url }}){: .icon} C, C#, C++, JavaScript, MATLAB (Octave), Bash, PowerShell, Flutter (Dart)
-- 自作 PC (AMD 最高!)
+- プログラミング 
+
+![Ruby](/assets/img/prog/ruby.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/javascript.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/bash.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/html.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/css.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/sass.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/c.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/cpp.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/python.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/csharp.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/unity.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/latex.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/matlab.png){:width="32px" style="display: inline-block"}
+![Ruby](/assets/img/prog/dotnet.png){:width="32px" style="display: inline-block"}
+
+- 自作 PC (AMD!)
 - 電子工作
 
