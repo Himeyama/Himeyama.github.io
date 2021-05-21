@@ -9,7 +9,7 @@ description: 山口県の新型コロナウイルス情報
 <script src="/assets/js/gridjs.production.min.js"></script> -->
 
 <div class="card mb-3">
-    <div class="card-body mx-auto">過去 30 日間の発生状況</div>
+    <div class="card-body mx-auto">過去 14 日間の発生状況</div>
     
     <div class="card-body mx-auto" id="map"></div>
 </div>
@@ -71,7 +71,7 @@ function func(data, first, last){
 // 濃度関数
 function sgovcf(n){
     if(n == 0) return 0
-    return parseInt(n / 50) + 1
+    return parseInt(n / 25) + 1
 }
 
 let reqsc2 = new XMLHttpRequest
@@ -143,8 +143,8 @@ reqsc2.addEventListener("load", (e) => {
         )
     }
     
-    // 30日間の濃度
-    sgovg = Object.fromEntries(Object.entries(sgov2).map((e) => [e[0], e[1].slice(-30).reduce(sum)]))
+    // 14日間の濃度
+    sgovg = Object.fromEntries(Object.entries(sgov2).map((e) => [e[0], e[1].slice(-14).reduce(sum)]))
 
     sgovs = ["下関市", "山口市", "宇部市", "周南市", "岩国市", "防府市",
         "山陽小野田市", "下松市", "光市", "萩市", "長門市", "柳井市", "美祢市",
