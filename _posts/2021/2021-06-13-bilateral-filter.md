@@ -9,7 +9,7 @@ ImageMagick でバイラテラルフィルターをかける試み。
 ImageMagick のインストール方法は [install-magick.html](install-magick.html)
 
 # コマンド例
-    $ magick convert Parrots.jpg -bilateral-blur 10x10 output.png
+    magick convert Parrots.jpg -bilateral-blur 10x10 output.png
 
 # 結果
 - 入力画像
