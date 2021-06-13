@@ -1,6 +1,30 @@
 ---
 ---
 
+.post-title {
+    font-size: 32px;
+    margin: 0 0 16px 0;
+}
+
+.language-bash pre.highlight::before, .language-sh pre.highlight::before {
+    content: "" !important;
+}
+
+h1{
+    font-size: 28px;
+    margin: 32px 0 12px 0;
+}
+
+h2{
+    font-size: 24px;
+    margin: 28px 0 8px 0;
+}
+
+h3{
+    font-size: 22px;
+    margin: 24px 0 8px 0;
+}
+
 #monaco-container {
     overflow: hidden;
     height: 50px;
@@ -48,7 +72,7 @@ pre.highlight {
 }
 
 div.highlighter-rouge {
-    margin: 32px 0;
+    margin: 16px 0;
 }
 
 // Quotes
