@@ -13,7 +13,7 @@ python -m pip install --upgrade pip
 
 ## pip でインストール
 ```sh
-pip install jupyter lab
+pip install jupyterlab
 ```
 
 ## 起動
