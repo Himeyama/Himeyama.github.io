@@ -5,12 +5,8 @@ title: 山口県の新型コロナウイルス情報
 description: 山口県の新型コロナウイルス情報
 ---
 
-<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="//unpkg.com/@fluentui/react@8/dist/fluentui-react.js"></script>
-<script src="//unpkg.com/@fluentui/react-hooks@8/dist/react-hooks.js"></script>
-
+<!-- <link rel="stylesheet" href="/assets/css/mermaid.min.css">
+<script src="/assets/js/gridjs.production.min.js"></script> -->
 
 <div class="card mb-3">
     <div class="card-body mx-auto">過去 14 日間の発生状況</div>
@@ -22,8 +18,11 @@ description: 山口県の新型コロナウイルス情報
     <canvas class="card-body" id="myChart"></canvas>
 </div>
 
-<div class="card">
-    <div id="p-table" style="overflow: auto auto; max-height: 40vh"></div>
+
+<div class="card" style="height:720px;">
+    <div class="card-body container overflow-auto">
+        <table id="table" style="font-size: .6em;"></table>
+    </div>
 </div>
 
 
@@ -79,20 +78,37 @@ let reqsc2 = new XMLHttpRequest
 reqsc2.responseType = "arraybuffer"
 reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz")
 reqsc2.send()
-
-let rdata = {}
-
 reqsc2.addEventListener("load", (e) => {
     data = JSON.parse(new TextDecoder().decode(new Zlib.Gunzip(new Uint8Array(e.target.response)).decompress()))
-    rdata = Array.from(data).reverse()
-    renderTable()
 
+    let table = document.getElementById("table")
+    let html = "<tr><th>No</th><th>市町村名</th><th>陽性確定日</th><th>性別</th><th>年代</th><th>公表日</th><th>備考</th></tr>"
+    for(let d of data.slice().reverse()){
+        html += `<tr><td>${d["No"]}</td><td>${d["市町村名"]}</td><td>${sdate2w(d["陽性確定日"])}</td><td>${d["患者_性別"]}</td><td>${d["患者_年代"]}</td><td>${sdate2w(d["公表日"])}</td><td>${d["備考"] ? d["備考"] : ""}</td></tr>`    
+    }
+    table.innerHTML += html
+
+    // new gridjs.Grid({
+    //     // columns: ['Name', 'Email'],
+    //     sort: true,
+    //     pagination: true,
+    //     data: data,
+    //     style: { 
+    //         table: { 
+    //             'white-space': 'nowrap'
+    //         }
+    //     },
+    // }).render(document.getElementById('table'))
 
     // let f, l
     f = new Date(data[0]["陽性確定日"])
     l = new Date(data[data.length-1]["陽性確定日"])
+    // console.log(l)
     let x, dt
     [x, dt] = func(data, f, l)
+    // console.log(x, dt)
+
+    // 市町村ごとに
     sgov = {}
     for(let d of data){
         if(!sgov[d["市町村名"]]) sgov[d["市町村名"]] = []
@@ -152,7 +168,9 @@ reqsc2.addEventListener("load", (e) => {
             }
         }
     })
-  
+
+    
+    
 
     let config = {
         type: "bar",
@@ -174,25 +192,4 @@ reqsc2.addEventListener("load", (e) => {
     myChart = new Chart(ctx, config)
 
 })
-</script>
-
-<script type="text/babel">
-const { TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
-function renderTable(){
-    ReactDOM.render(
-        <DetailsList
-            items={rdata}
-            columns={[
-                { key: 'column1', name: '市町村名', fieldName: '市町村名', isResizable: true, minWidth: 36},
-                { key: 'column2', name: '陽性確定日', fieldName: '陽性確定日', isResizable: true, minWidth: 72},
-                { key: 'column3', name: '性別', fieldName: '患者_性別', isResizable: true, minWidth: 36},
-                { key: 'column4', name: '年代', fieldName: '患者_年代', isResizable: true, minWidth: 36},
-                { key: 'column5', name: '公表日', fieldName: '公表日', isResizable: true, minWidth: 72},
-                { key: 'column6', name: '備考', fieldName: '備考', isResizable: true, minWidth: 196}
-            ]}
-            selectionMode={SelectionMode.none}
-            useReducedRowRenderer={true}
-        />,
-        document.getElementById('p-table'))
-}
 </script>
