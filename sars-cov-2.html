@@ -10,9 +10,11 @@ description: 山口県の新型コロナウイルス情報
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="//unpkg.com/@fluentui/react@8/dist/fluentui-react.js"></script>
 <script src="//unpkg.com/@fluentui/react-hooks@8/dist/react-hooks.js"></script>
+<script type="text/babel">
+    const { Shimmer, ShimmerElementType, TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
+</script>    
 
-
-<div class="card mb-3">
+<div id="map-card" class="card mb-3" style="height: 450px;">
     <div class="card-body mx-auto">過去 14 日間の発生状況</div>
     
     <div class="card-body mx-auto" id="map"></div>
@@ -30,6 +32,28 @@ description: 山口県の新型コロナウイルス情報
 <script src="/assets/js/chart.min.js"></script>
 <script src="/assets/js/gunzip.min.js"></script>
 <script>
+const map_row = [
+    { type: 1, height: 450 }
+];
+class YMAP extends React.Component {
+    render(){
+        if(this.props.loaded == "true"){
+            return /*#__PURE__*/React.createElement("div", {
+                class: "mx-auto"
+            }, /*#__PURE__*/React.createElement("div", {
+                class: "card-body mx-auto text-center"
+            }, "\u904E\u53BB 14 \u65E5\u9593\u306E\u767A\u751F\u72B6\u6CC1"), /*#__PURE__*/React.createElement("div", {
+                class: "card-body mx-auto",
+                id: "map"
+            }));
+        }else{
+            return React.createElement(Shimmer, {
+                shimmerElements: map_row
+            }, null)
+        }
+    }
+}
+
 const sum = (accumulator, currentValue) => accumulator + currentValue;
 
 // 日付を文字列に
@@ -147,7 +171,15 @@ reqsc2.addEventListener("load", (e) => {
     let svg = new XMLHttpRequest
     svg.open("GET", "/assets/img/yamaguchi.svg")
     svg.send()
+
     svg.addEventListener("load", (e) => {
+        ReactDOM.render(
+            React.createElement(YMAP, {
+                loaded: "true"
+            }, null),
+            document.getElementById('map-card')
+        )
+
         let ymap = document.getElementById("map")
         ymap.innerHTML = e.target.response
         for(let [i, c] of sgovs.entries()){
@@ -184,7 +216,8 @@ reqsc2.addEventListener("load", (e) => {
 </script>
 
 <script type="text/babel">
-const { TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
+// const { Shimmer, ShimmerElementType, TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
+
 function renderTable(){
     ReactDOM.render(
         <DetailsList
@@ -202,4 +235,11 @@ function renderTable(){
         />,
         document.getElementById('p-table'))
 }
+
+ReactDOM.render(
+    React.createElement(YMAP, {
+        loaded: "false"
+    }, null),
+    document.getElementById('map-card')
+)
 </script>
