@@ -81,10 +81,17 @@ reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz
 reqsc2.send()
 
 let rdata = {}
+let data
 
 reqsc2.addEventListener("load", (e) => {
-    data = JSON.parse(new TextDecoder().decode(new Zlib.Gunzip(new Uint8Array(e.target.response)).decompress()))
-    rdata = Array.from(data).reverse()
+    let txt_data = new TextDecoder().decode(new Zlib.Gunzip(new Uint8Array(e.target.response)).decompress())
+    data = JSON.parse(txt_data)
+    rdata = JSON.parse(txt_data)
+    rdata.reverse()
+    rdata = rdata.map(e=>{
+        e["公表日"] = (new Era(e["公表日"])).getWareki();
+        e["陽性確定日"] = (new Era(e["陽性確定日"])).getWareki();
+        return e})
     renderTable()
 
 
@@ -183,12 +190,12 @@ function renderTable(){
         <DetailsList
             items={rdata}
             columns={[
-                { key: 'column1', name: '市町村名', fieldName: '市町村名', isResizable: true, minWidth: 36},
-                { key: 'column2', name: '陽性確定日', fieldName: '陽性確定日', isResizable: true, minWidth: 72},
-                { key: 'column3', name: '性別', fieldName: '患者_性別', isResizable: true, minWidth: 36},
-                { key: 'column4', name: '年代', fieldName: '患者_年代', isResizable: true, minWidth: 36},
-                { key: 'column5', name: '公表日', fieldName: '公表日', isResizable: true, minWidth: 72},
-                { key: 'column6', name: '備考', fieldName: '備考', isResizable: true, minWidth: 196}
+                { key: 'column1', name: '市町村名', fieldName: '市町村名', isResizable: true, minWidth: 56, maxWidth: 56},
+                { key: 'column2', name: '陽性確定日', fieldName: '陽性確定日', isResizable: true, minWidth: 88, maxWidth: 88},
+                { key: 'column3', name: '性別', fieldName: '患者_性別', isResizable: true, minWidth: 32, maxWidth: 32},
+                { key: 'column4', name: '年代', fieldName: '患者_年代', isResizable: true, minWidth: 32, maxWidth: 32},
+                { key: 'column5', name: '公表日', fieldName: '公表日', isResizable: true, minWidth: 88, maxWidth: 88},
+                { key: 'column6', name: '備考', fieldName: '備考', isResizable: true}
             ]}
             selectionMode={SelectionMode.none}
             useReducedRowRenderer={true}
