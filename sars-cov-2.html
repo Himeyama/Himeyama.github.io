@@ -9,15 +9,9 @@ description: 山口県の新型コロナウイルス情報
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="//unpkg.com/@fluentui/react@8/dist/fluentui-react.js"></script>
-<script src="//unpkg.com/@fluentui/react-hooks@8/dist/react-hooks.js"></script>
-<script type="text/babel">
-    const { Shimmer, ShimmerElementType, TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
-</script>    
+<script src="//unpkg.com/@fluentui/react-hooks@8/dist/react-hooks.js"></script> 
 
 <div id="map-card" class="card mb-3" style="height: 450px;">
-    <div class="card-body mx-auto">過去 14 日間の発生状況</div>
-    
-    <div class="card-body mx-auto" id="map"></div>
 </div>
 
 <div class="card mb-3">
@@ -28,10 +22,15 @@ description: 山口県の新型コロナウイルス情報
     <div id="p-table" style="overflow: auto auto; max-height: 40vh"></div>
 </div>
 
-
 <script src="/assets/js/chart.min.js"></script>
 <script src="/assets/js/gunzip.min.js"></script>
+
+<script type="text/babel">
+</script>
+
+
 <script>
+const { Shimmer, ShimmerElementType, TextField, Toggle, Announced, DetailsList, DetailsListLayoutMode, Selection, SelectionMode, IColumn, MarqueeSelection, mergeStyleSets, TooltipHost, ThemeProvider, initializeIcons } = window.FluentUIReact;
 const map_row = [
     { type: 1, height: 450 }
 ];
@@ -53,6 +52,10 @@ class YMAP extends React.Component {
         }
     }
 }
+
+ReactDOM.render(React.createElement(YMAP, {
+  loaded: "false"
+}, null), document.getElementById('map-card'));
 
 const sum = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -235,11 +238,4 @@ function renderTable(){
         />,
         document.getElementById('p-table'))
 }
-
-ReactDOM.render(
-    React.createElement(YMAP, {
-        loaded: "false"
-    }, null),
-    document.getElementById('map-card')
-)
 </script>
