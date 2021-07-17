@@ -41,7 +41,7 @@ class YMAP extends React.Component {
                 class: "mx-auto"
             }, /*#__PURE__*/React.createElement("div", {
                 class: "card-body mx-auto text-center"
-            }, "\u904E\u53BB 14 \u65E5\u9593\u306E\u767A\u751F\u72B6\u6CC1"), /*#__PURE__*/React.createElement("div", {
+            }, "\u904E\u53BB 30 \u65E5\u9593\u306E\u767A\u751F\u72B6\u6CC1"), /*#__PURE__*/React.createElement("div", {
                 class: "card-body mx-auto",
                 id: "map"
             }));
@@ -143,7 +143,7 @@ reqsc2.addEventListener("load", (e) => {
     let cgov = ["下関市", "山口市", "宇部市", "周南市", "岩国市", "防府市"]
     
     let datasets = [{
-        label: "陽性者数(1ヶ月)",
+        label: "陽性者数",
         fill: false,
         borderColor: "#f44336",
         data: x.slice(-30)
@@ -161,8 +161,8 @@ reqsc2.addEventListener("load", (e) => {
         )
     }
     
-    // 14日間の濃度
-    sgovg = Object.fromEntries(Object.entries(sgov2).map((e) => [e[0], e[1].slice(-14).reduce(sum)]))
+    // 30日間の濃度
+    sgovg = Object.fromEntries(Object.entries(sgov2).map((e) => [e[0], e[1].slice(-30).reduce(sum)]))
 
     sgovs = ["下関市", "山口市", "宇部市", "周南市", "岩国市", "防府市",
         "山陽小野田市", "下松市", "光市", "萩市", "長門市", "柳井市", "美祢市",
