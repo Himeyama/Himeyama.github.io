@@ -30,3 +30,6 @@ plugins:
 
 redirect_from:
   json: false
+
+jekyll_admin:
+  hidden_links:
