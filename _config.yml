@@ -14,11 +14,6 @@ github_org:      "https://github.com/himeyama"
 defaults:
   - scope:
       path:     ""
-    values:
-      image:
-        path:   "/assets/img/social.png" # default image
-        width:  480
-        height: 720
 
 # Gems
 plugins:
