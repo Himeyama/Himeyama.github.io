@@ -5,6 +5,10 @@ body {
     font-family: 'IBM Plex Sans JP', "メイリオ";
 }
 
+code, kbd, pre, samp {
+    font-family: "cascadia code pl", "cascadia mono pl", "cascadia code", "cascadia mono", "consolas", "Meiryo";
+}
+
 .post-title {
     font-size: 32px;
     margin: 0 0 16px 0;
