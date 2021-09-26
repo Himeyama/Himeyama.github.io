@@ -15,7 +15,7 @@ date: '2021-09-27 05:21'
 
 ## ターミナルで設定ファイルを開く
 
-```powershell
+```sh
 notepad C:\ProgramData\ssh\sshd_config
 ```
 
@@ -42,20 +42,20 @@ notepad C:\ProgramData\ssh\sshd_config
 ## SSH サーバーの再起動
 ターミナルに戻り、以下のようにコマンドを実行し、SSH サーバーを再起動する。
 
-```powershell
+```sh
 Restart-Service sshd
 ```
 
 ## 接続テスト
 設定が有効になっているかテストする。
 
-```powershell
+```sh
 ssh localhost
 ```
 
 を実行し、
 
-```powershell
+```sh
 user@localhost: Permission denied (publickey,keyboard-interactive).
 ```
 
