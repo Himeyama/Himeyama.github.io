@@ -104,7 +104,7 @@ function sgovcf(n){
 
 let reqsc2 = new XMLHttpRequest
 reqsc2.responseType = "arraybuffer"
-reqsc2.open("GET", "https://himeyama.github.io/cov2-api/positive_persons.json.gz")
+reqsc2.open("GET", "/cov2-api/positive_persons.json.gz")
 reqsc2.send()
 
 let rdata = {}
