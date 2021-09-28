@@ -12,7 +12,7 @@ pkg install openssh
 
 ## エラーが出る場合
 
-Github から termux をインストールすることをおすすめします。(詳細は後で)
+Github から termux をインストールすることをおすすめします。(詳細は後日)
 
 Google Play 版で続行したい場合は、以下を。
 
@@ -43,7 +43,9 @@ echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYztjZfIVMl5o0J2DrigTsl1XgbSKMUgYCpfOf
 
 # ログイン
 ```bash
+# スマホの ip アドレスを確認
 ip a
+
 ssh 192.168.x.x -p 8022
 ```
 
