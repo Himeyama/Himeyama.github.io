@@ -12,18 +12,9 @@ pkg install openssh
 
 ## エラーが出る場合
 
-Github から termux をインストールすることをおすすめします。(詳細は後日)
+Android 版の termux で実行するとエラーが起こるので、
+既存の termux を削除し Github から termux をインストールすることをおすすめします。([GitHub から Termux をインストールする](2021-09-29-termux-install-github.md))
 
-Google Play 版で続行したい場合は、以下を。
-
-```bash
-termux-change-repo
-# 3つすべて選択して OK
-# Mirrors by Grimler を選択して OK
-```
-
-リポジトリーを別のものに設定して、
-openssh のインストールを再試行する。
 
 # サーバーの起動
 ```bash
