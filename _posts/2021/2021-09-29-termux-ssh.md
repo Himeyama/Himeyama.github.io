@@ -32,8 +32,10 @@ sshd
 termux の `~/.ssh/authorized_keys` に追加する。
 
 ```sh
+# 例:
 echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYztjZfIVMl5o0J2DrigTsl1XgbSKMUgYCpfOfhMtmw hikari@B450M-K >> ~/.ssh/authorized_keys
 ```
+
 
 # ログイン
 ```bash
