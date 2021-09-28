@@ -11,7 +11,10 @@ pkg install openssh
 ```
 
 ## エラーが出る場合
-リポジトリーがないとかでエラーが出る。
+
+Github から termux をインストールすることをおすすめします。(詳細は後で)
+
+Google Play 版で続行したい場合は、以下を。
 
 ```bash
 termux-change-repo
@@ -31,11 +34,12 @@ sshd
 クライアントの公開鍵 (`~/.ssh/id_*.pub`) を
 termux の `~/.ssh/authorized_keys` に追加する。
 
+公開鍵はメールで自分宛てに送ったり、twitter の DM で自分宛てに送ったりして、コピペすると楽。
+
 ```sh
 # 例:
 echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYztjZfIVMl5o0J2DrigTsl1XgbSKMUgYCpfOfhMtmw hikari@B450M-K >> ~/.ssh/authorized_keys
 ```
-
 
 # ログイン
 ```bash
