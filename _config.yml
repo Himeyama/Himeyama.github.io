@@ -3,7 +3,7 @@ title:          "hikari ノート"
 paginate:       5
 sass:
   style:        compressed
-url:            "https://himeyama.github.io"
+url:            "https://blog.hikari-dev.com"
 assets:
   css:
     # Use https://www.srihash.org to generate the hash, or use the hash from upstream
