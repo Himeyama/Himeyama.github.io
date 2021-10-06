@@ -6,15 +6,10 @@ description: 自己紹介
 author: himeyama
 ---
 
+よろしく
+
 ## 名前
 ✋ 村田 光春 (Murata Mitsuharu)
-## 所属
-- ![Yamaguchi University]({{ "/assets/img/YU.png" | relative_url }}){: .icon} 山口大学理学部　物理・情報科学科 (令和3年3月23日卒業)
-- ![Yamaguchi University]({{ "/assets/img/YU.png" | relative_url }}){: .icon} 山口大学　大学院創成科学研究科　基盤科学系専攻 (令和3年4月1日～)
-- ![BCL]({{ "/assets/img/bcl.svg" | relative_url }}){: .icon} [生体情報システム研究室 / 西井研](http://bcl.sci.yamaguchi-u.ac.jp/) (令和元年秋～)
-
-## 研究
-- 👀 視覚と運動
 
 ## 検定・資格
 - ![Ruby_silver]({{ "/assets/img/ruby_silver.png" | relative_url }}){: .icon} Ruby Association Certified Ruby Programmer Silver  

@@ -55,8 +55,16 @@
     {% include subnav.html %}
 
     <div class="container">
-        {{ content }}
-    </div>
+        <div class="row">
+            <div class="col">
+                {{ content }}
+            </div>
+            <div class="col-3">
+                {% include sidemenu.html %}
+            </div>
+        </div>
+        
+    </div> 
 
     {% include footer.html %}
 

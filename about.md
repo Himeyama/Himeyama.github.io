@@ -4,6 +4,8 @@ date: '2021-05-08 10:06:00'
 layout: post
 ---
 
+このホームページの内容は大学でしている研究とほとんど関係ないというか、パソコン周りの話をメモってる感じです。
+
 このホームページは [Jekyll](http://jekyllrb-ja.github.io/) と [Bootstrap Blog](https://blog.getbootstrap.com/) によって作成しています。
 
 © 2021 Murata Mitsuharu. Powered by Jekyll and Bootstrap Blog under the MIT license.
